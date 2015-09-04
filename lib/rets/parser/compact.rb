@@ -1,5 +1,7 @@
 # coding: utf-8
 
+require 'cgi'
+
 module Rets
   module Parser
     class Compact
@@ -76,7 +78,7 @@ module Rets
         end
 
         column_names = columns.split(delimiter)
-        data_values = data.split(delimiter, INCLUDE_NULL_FIELDS).map { |x| CGI.unescapeHTML(x) }
+        data_values = data.split(delimiter, INCLUDE_NULL_FIELDS).map { |x| CGI::unescapeHTML(x) }
 
         zipped_key_values = column_names.zip(data_values).map { |k, v| [k.freeze, v.to_s] }
 
